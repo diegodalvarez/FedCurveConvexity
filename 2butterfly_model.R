@@ -92,5 +92,28 @@ ggplot(data = melted_fly_corr, aes(x = Var1, y = Var2, fill = value)) +
   ylab("Butterfly") +
   labs(title = paste("Butterfly yield correlation from", start_date, "to", end_date))
 
-df_butterfly %>% 
+df_butterfly_change <- df_butterfly %>% 
+  group_by(ticker) %>% 
+  mutate(change = value / lag(value) - 1) %>% 
+  select(-value) %>% 
+  ungroup() %>% 
+  drop_na()
+
+df_butterfly_wider_change <- df_butterfly_change %>% 
+  pivot_wider(names_from = "ticker", values_from = "change") %>% 
+  select(-date)
+
+fly_change_corr <- cor(df_butterfly_wider_change)
+melted_fly_change_corr <- melt(fly_change_corr)
+
+ggplot(data = melted_fly_change_corr, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank()) +
+  xlab("Butterfly") +
+  ylab("Butterfly") +
+  labs(title = paste("Butterfly Yield Change correlation from", start_date, "to", end_date))
+
+df_butterfly %>%
   write_parquet("fly.parquet")
