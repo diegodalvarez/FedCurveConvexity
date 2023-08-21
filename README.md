@@ -1,4 +1,4 @@
-# An Analysis of Federal Reserve Policy vis Treasury Yield Curve Convexity
+# An Analysis of Federal Reserve Policy via Treasury Yield Curve Convexity
 
 ## Background
 Curve Convexity via Butterflys for Fed Funds Analysis. The idea behind this model is to measure the confidence that is placed in the federal reserve's montery policy. Since the treasury curve will be the most responsive set of securities that can be parsed via their term we can use an analysis of the curve. Ideally we can regress specific treasury rates to their respective butterflies. Since the butterflies are a measure of convexity and simply put curve volatility we can analyze relationship between yields and the curve. Essentially as we regress the treasury yields to their respective yield curve we are measuing how strong the relationship is between respective tenors. This is all done by measure the R squared of the regression. As the R squared decreases the tenors trade less in line with respect to the curve. 
