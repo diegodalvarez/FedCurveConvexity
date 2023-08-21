@@ -8,3 +8,6 @@ We can first start by picking a Treasury Butterfly in this case we'll use the 2-
 
 In this case we can break down by the year and examine the various R squares for the regression. We are left with this bar chart of the R squared over time. 
 ![image](https://github.com/diegodalvarez/FedCurveConvexity/assets/48641554/dc84448b-a505-4d73-b9d8-f3eb351a0acf)
+
+Looking at the distribution of the parameters in this case using a 1y rolling linear regression
+![image](https://github.com/diegodalvarez/FedCurveConvexity/assets/48641554/2be37020-8688-4149-86b2-e402af489ebe)
