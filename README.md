@@ -12,11 +12,16 @@
           │   params.parquet
 ```
 
-SRC files:
+src files:
 * ```collect_data.R```: Collects data from Fred for yield curve treasury rates and Fed Funds rates
 * ```butterfly_model.R```: Creates all yield curve butterfly rates for every possibly teneors
 * ```regression.R```: Does a regression on one specific butterfly regression
 * ```params.R```: Analysis of the OLS parameters of the regression
+
+data files:
+* ```data.parquet```: FRED Treasury & Fed Funds date
+* ```fly.parquet```: All Yield Curve FLys data
+* ```params.parquet```: Fly regression Paramater Analysis
 
 ## Background
 Curve Convexity via Butterflys for Fed Funds Analysis. The idea behind this model is to measure the confidence that is placed in the federal reserve's montery policy. Since the treasury curve will be the most responsive set of securities that can be parsed via their term we can use an analysis of the curve. Ideally we can regress specific treasury rates to their respective butterflies. Since the butterflies are a measure of convexity and simply put curve volatility we can analyze relationship between yields and the curve. Essentially as we regress the treasury yields to their respective yield curve we are measuing how strong the relationship is between respective tenors. This is all done by measure the R squared of the regression. As the R squared decreases the tenors trade less in line with respect to the curve. 
