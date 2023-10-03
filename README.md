@@ -11,6 +11,7 @@
           │   flys.parquet
           │   params.parquet
 ```
+
 SRC files:
 * ```collect_data.R```: Collects data from Fred for yield curve treasury rates and Fed Funds rates
 * ```butterfly_model.R```: Creates all yield curve butterfly rates for every possibly teneors
