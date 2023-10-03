@@ -34,3 +34,7 @@ In this case we can break down by the year and examine the various R squares for
 
 Looking at the distribution of the parameters in this case using a 1y rolling linear regression
 ![image](https://github.com/diegodalvarez/FedCurveConvexity/assets/48641554/536de6ab-6299-44e8-9ddc-3e88770177c2)
+
+# Todo
+1. Generalize for all possible flys
+2. calculate medians and mean of all rolling $R^2$
