@@ -1,5 +1,6 @@
 require("arrow")
 require("moments")
+require("latex2exp")
 require("tidyverse")
 
 parent_path <- dirname(getwd())
@@ -27,23 +28,24 @@ df_plot <- df_rsquared %>%
   full_join(y = df_pos, by = c("ticker", "tenor")) %>% 
   select(-tenor)
 
-sample_tickers <- c("0.25_0.5_1", "0.25_0.5_10", "0.25_0.5_2")
-
-df_sample_plot <- df_plot %>% 
-  filter(ticker %in% sample_tickers) 
-
-df_avg <- df_sample_plot %>% 
+# the plot is very hard for ggplot to do
+df_avg <- df_plot %>% 
   select(-ticker) %>% 
   group_by(date, pos) %>% 
   summarise(avg = mean(value)) %>% 
   ungroup()
 
-ggplot(df_plot, aes(x = date, y = value, color = ticker)) +
-  geom_line()
+df_rename <- tibble(
+  name = c("lower wing", "body", "upper wing"),
+  pos = c(1,2,3))
 
-df_sample_plot %>% 
-  ggplot(aes(x = date, y = value, color = ticker)) +
-  ggplot(df_avg, aes(x = date, y = avg)) +
-  facet_wrap(~pos, scale = "free", nrow = 3) +
-  geom_line(alpha = 0.7, color = "grey") +
-  geom_line()
+start_date <- min(df_avg$date)
+end_date <- max(df_avg$date)
+
+df_avg %>% 
+  full_join(y = df_rename, by = "pos") %>% 
+  ggplot(aes(x = date, y = avg)) +
+  facet_wrap(~name, scale = "free_y", nrow = 3) +
+  geom_line() +
+  labs(title = TeX(paste(
+    "Cross-Sectional average of all $R^2$ of every regression from", start_date, "to", end_date)))
