@@ -131,5 +131,6 @@ ggplot(data = melted_fly_change_corr, aes(x = Var1, y = Var2, fill = value)) +
   labs(title = paste("Butterfly Yield Change correlation from", start_date, "to", end_date))
 
 fly_out_path <- file.path(parent_path, "data", "fly.parquet")
+
 df_butterfly %>%
   write_parquet(fly_out_path)
